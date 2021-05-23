@@ -10,24 +10,35 @@ function eventListeners() {
 }
 
 //clases
-class Pesesupuesto {
-   constructor(presupuesto) 
+class Presupuesto {
+   constructor(presupuesto) {
+       this.presupuesto = Number(presupuesto);
+       this.restante = Number(presupuesto);
+       this.gastos = [];
+   }
 }
 
 class UI {
-    
+
 }
+
+//iinstanciar 
+const ui = new UI();
+let presupuesto;
 
 //funciones 
 
 function preguntarPresupuesto() {
     const presupuestoUsuario = prompt('¿Cual es tu presupuesto?')
 
-    console.log( Number(presupuestoUsuario) );
+    // console.log( Number(presupuestoUsuario) );
 
     if( presupuestoUsuario === '' || presupuestoUsuario === null || isNaN(presupuestoUsuario) || presupuestoUsuario <= 0 ) {
         window.location.reload();
     }
+
+     presupuesto = new Presupuesto(presupuestoUsuario);
+     console.log(presupuesto);
 }
 
 
