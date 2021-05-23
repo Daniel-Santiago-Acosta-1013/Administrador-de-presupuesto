@@ -83,7 +83,7 @@ function agregarGasto(e) {
 
     //leer los datos del formulario
     const nombre = document.querySelector('#gasto').value;
-    const cantidad = document.querySelector('#cantidad').value;
+    const cantidad = Number(document.querySelector('#cantidad').value);
 
     //validar
     if (nombre === '' || cantidad === '') {
@@ -97,5 +97,8 @@ function agregarGasto(e) {
         return;
     }
 
-    console.log('Agregando Gasto')
+    // Generar un objeto con el gasto 
+    const gasto = { nombre, cantidad }
+
+    console.log(gasto);
 }
