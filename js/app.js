@@ -1,6 +1,6 @@
 //Variables y selectores 
 const formulario = document.querySelector('#agregar-gasto');
-const gastoListado = document.querySelector('#gastos-ul');
+const gastoListado = document.querySelector('#gastos ul');
 
 //Eventos
 
@@ -57,7 +57,35 @@ class UI {
             divMensaje.remove();
         }, 2000);
     }
+
+    agregarGastoListado(gastos) {
+        
+
+        // Iterar sobre los gastos 
+        gastos.forEach(gasto => {
+            
+            const { cantidad, nombre, id } = gasto;
+
+            //Crear un LI
+            const nuevoGasto = document.createElement('li');
+            nuevoGasto.className = 'list-group-item d-flex justify-content-between aling-items-center';
+            nuevoGasto.dataset.id = id;
+
+            //Agregar el HTML del gasto
+            nuevoGasto.innerHTML = `${nombre} <span class="badge badge-primary badge-pill"> ${cantidad} </span>`;
+
+            //Boton para borrar el gasto
+            const btnBorrar = document.createElement('button');
+            btnBorrar.classList.add('btn', 'btn-danger', 'borrar-gasto');
+
+            nuevoGasto.appendChild(btnBorrar);
+
+            //agregar al HTML
+            gastoListado.appendChild(nuevoGasto); 
+        });
+    }
 }
+
 
 //iinstanciar 
 const ui = new UI();
@@ -110,6 +138,10 @@ function agregarGasto(e) {
 
     // Mensaje de todo bien 
     ui.imprimirAlerta('Gasto agregando correctamente')
+
+    // Imprimir los gastos
+    const { gastos } = presupuesto;
+    ui.agregarGastoListado(gastos);
 
     // Reinicia el formulario 
     formulario.reset();
